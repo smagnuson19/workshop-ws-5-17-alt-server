@@ -8,10 +8,6 @@ def index():
     return "Flask App!"
 
 @app.route("/hello")
-def hello_world():
-    return "Hello World!"
-
-@app.route("/hello/<string:name>/")
 def hello(name):
     quotes = [ "'If people do not believe that mathematics is simple, it is only because they do not realize how complicated life is.' -- John Louis von Neumann ",
                "'Computer science is no more about computers than astronomy is about telescopes' --  Edsger Dijkstra ",
@@ -24,6 +20,11 @@ def hello(name):
 
     return render_template(
         'test.html',**locals())
+
+@app.route("/hello/<string:name>/")
+def hello(name):
+    return render_template(
+        'test.html',name=name)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)
